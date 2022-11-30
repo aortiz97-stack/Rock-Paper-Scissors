@@ -59,7 +59,11 @@ function game(){
 
         console.log(playPaperRockScissors(computerChoice, playerChoice));
 
-        if (playerWon(computerChoice, playerChoice)){
+        if (computerChoice===playerChoice){
+            i-=1;
+        }
+   
+        else if (playerWon(computerChoice, playerChoice)){
             winnerCount +=1;
         }
     }
