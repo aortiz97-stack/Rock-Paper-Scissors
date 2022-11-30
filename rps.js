@@ -52,11 +52,12 @@ function playPaperRockScissors(computerSelection, playerSelection){
 }
 
 function game(){
-    winnerCount = 0;
-    loserCount = 0;
+    let winnerCount = 0;
+    let loserCount = 0;
+    
     for (i =0; i < 5; i++){
-        computerChoice = getComputerChoice();
-        playerChoice = getPlayerChoice();
+        let computerChoice = getComputerChoice();
+        let playerChoice = getPlayerChoice();
 
         console.log(playPaperRockScissors(computerChoice, playerChoice));
 
