@@ -15,6 +15,14 @@ function getPlayerChoice(){
     return choice
 }
 
+function playerWon(computerSelection, playerSelection){
+    let winnerConditional = (playerSelection==="rock" && computerSelection==="scissors") ? true :
+    (playerSelection==="paper" && computerSelection==="rock")? true :
+    (playerSelection==="scissors" && computerSelection==="paper")? true: false;
+
+    return winnerConditional;
+}
+
 function playPaperRockScissors(computerSelection, playerSelection){
     let winnerStatement = `You Win! `;
     let loserStatement = `You Lose! `;
@@ -28,9 +36,7 @@ function playPaperRockScissors(computerSelection, playerSelection){
     }
 
     else{
-        let winnerConditional = (playerSelection==="rock" && computerSelection==="scissors") ? true :
-        (playerSelection==="paper" && computerSelection==="rock")? true :
-        (playerSelection==="scissors" && computerSelection==="paper")? true: false;
+        let winnerConditional = playerWon(computerSelection, playerSelection);
 
         if (winnerConditional){
             winnerStatement += `${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}!`;
