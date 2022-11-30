@@ -54,7 +54,7 @@ function playPaperRockScissors(computerSelection, playerSelection){
 function game(){
     let winnerCount = 0;
     let loserCount = 0;
-    
+
     for (i =0; i < 5; i++){
         let computerChoice = getComputerChoice();
         let playerChoice = getPlayerChoice();
@@ -73,11 +73,12 @@ function game(){
         }
 
         if (winnerCount >= 3){
-            console.log(`Congratulations! You won!`);
+            console.log(`Congratulations! You won the game!`);
             break;
         }
         else if (loserCount >= 3){
             console.log(`Sorry, you've lost. You only won ${winnerCount} times.`);
+            break;
         }
     }
 }
