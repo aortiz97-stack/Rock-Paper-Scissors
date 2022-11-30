@@ -51,4 +51,28 @@ function playPaperRockScissors(computerSelection, playerSelection){
     return finalStatement;
 }
 
-alert(playPaperRockScissors(getComputerChoice(), getPlayerChoice()));
+function game(){
+    winnerCount = 0;
+    for (i =0; i < 5; i++){
+        computerChoice = getComputerChoice();
+        playerChoice = getPlayerChoice();
+
+        console.log(playPaperRockScissors(computerChoice, playerChoice));
+
+        if (playerWon(computerChoice, playerChoice)){
+            winnerCount +=1;
+        }
+    }
+
+    if (winnerCount >= 3){
+        console.log(`Congratulations! You won ${winnerCount} out of 5 games!`);
+    }
+
+    else{
+        console.log(`Sorry, you've lost. You only won ${winnerCount} out of 5 games.`);
+    }
+}
+
+game();
+
+//alert(playPaperRockScissors(getComputerChoice(), getPlayerChoice()));
