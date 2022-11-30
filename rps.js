@@ -7,4 +7,12 @@ function getComputerChoice(){
     return choice;
 }
 
-alert(getComputerChoice());
+function getPlayerChoice(){
+    let choice = prompt("Please enter rock, paper, or scissors.").toLowerCase();
+    if (!(choice === 'rock' || choice==='paper'||choice==='scissors')){
+        throw "Only rock, paper, or scissors is accepted."
+    }
+    return choice
+}
+
+alert(getPlayerChoice());
