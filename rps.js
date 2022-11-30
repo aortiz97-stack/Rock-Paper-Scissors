@@ -4,7 +4,7 @@ function getComputerChoice(){
     (randomNumber === 0)? choice= "Rock" :
     (randomNumber===1)? choice = "Paper" :
     (randomNumber==2) ? choice= "Scissors" : choice=null;
-    return choice;
+    return choice.toLowerCase();
 }
 
 function getPlayerChoice(){
@@ -14,5 +14,3 @@ function getPlayerChoice(){
     }
     return choice
 }
-
-alert(getPlayerChoice());
