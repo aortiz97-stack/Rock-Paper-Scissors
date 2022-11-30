@@ -72,11 +72,11 @@ function game(){
         }
 
         if (winnerCount >= 3){
-            console.log(`Congratulations! You won ${winnerCount} out of 5 games!`);
+            console.log(`Congratulations! You won!`);
             break;
         }
         else if (loserCount >= 3){
-            console.log(`Sorry, you've lost. You only won ${winnerCount} out of 5 games.`);
+            console.log(`Sorry, you've lost. You only won ${winnerCount} times.`);
         }
     }
 }
