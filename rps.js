@@ -54,8 +54,14 @@ function playPaperRockScissors(computerSelection, playerSelection){
 function game(){
     let winnerCount = 0;
     let loserCount = 0;
+    let acceptableRounds = [1,3,5,7,9];
+    let rounds = parseInt(prompt("Enter the number of rounds you would like to play. Odd numbers between 1 and 10 only."));
+    if (!acceptableRounds.includes(rounds)){
+        throw "Number of rounds must be an odd number between 1 and 10.";
+    }
 
-    for (i =0; i < 5; i++){
+
+    for (i =0; i < rounds; i++){
         let computerChoice = getComputerChoice();
         let playerChoice = getPlayerChoice();
 
@@ -72,11 +78,11 @@ function game(){
             loserCount += 1;
         }
 
-        if (winnerCount >= 3){
+        if (winnerCount >= rounds/2 + 0.5){
             console.log(`Congratulations! You won the game!`);
             break;
         }
-        else if (loserCount >= 3){
+        else if (loserCount >= rounds/2 + 0.5){
             console.log(`Sorry, you've lost. You only won ${winnerCount} times.`);
             break;
         }
@@ -84,5 +90,3 @@ function game(){
 }
 
 game();
-
-//alert(playPaperRockScissors(getComputerChoice(), getPlayerChoice()));
