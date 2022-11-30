@@ -66,13 +66,14 @@ function game(){
         else if (playerWon(computerChoice, playerChoice)){
             winnerCount +=1;
         }
+
+        if (winnerCount >= 3){
+            console.log(`Congratulations! You won ${winnerCount} out of 5 games!`);
+            break;
+        }
     }
 
-    if (winnerCount >= 3){
-        console.log(`Congratulations! You won ${winnerCount} out of 5 games!`);
-    }
-
-    else{
+    if (!playerWon(computerChoice, playerChoice)){
         console.log(`Sorry, you've lost. You only won ${winnerCount} out of 5 games.`);
     }
 }
