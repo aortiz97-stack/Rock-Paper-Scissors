@@ -16,8 +16,6 @@ function getPlayerChoice(){
 }
 
 function playPaperRockScissors(computerSelection, playerSelection){
-    console.log(`Computer: ${computerSelection}`);
-    console.log(`Player: ${playerSelection}`);
     let winnerStatement = `You Win! `;
     let loserStatement = `You Lose! `;
     let tieStatement = `You are tied. You both chose ${computerSelection}. Please try again.`;
