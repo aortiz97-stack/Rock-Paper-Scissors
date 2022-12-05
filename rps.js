@@ -8,8 +8,10 @@ function getComputerChoice(){
 }
 
 function getPlayerChoice(e){
-
-    return e
+    if (e === undefined) return;
+    else{
+        return(e.target.id);
+    }
 }
 
 function playerWon(computerSelection, playerSelection){
@@ -21,36 +23,39 @@ function playerWon(computerSelection, playerSelection){
 }
 
 function playPaperRockScissors(e){
-    let computerSelection = getComputerChoice();
-    let playerSelection = getPlayerChoice(e);
+    if (e!==undefined){
+
     
-    let winnerStatement = `You Win! `;
-    let loserStatement = `You Lose! `;
-    let tieStatement = `You are tied. You both chose ${computerSelection}. Please try again.`;
-    let finalStatement;
- 
+        let computerSelection = getComputerChoice();
+        let playerSelection = getPlayerChoice(e);
+        let winnerStatement = `You Win! `;
+        let loserStatement = `You Lose! `;
+        let tieStatement = `You are tied. You both chose ${computerSelection}. Please try again.`;
+        let finalStatement;
+    
 
-    let tieConditional = (computerSelection===playerSelection);
+        let tieConditional = (computerSelection===playerSelection);
 
-    if (tieConditional){
-        finalStatement = tieStatement;
-    }
-
-    else{
-        let winnerConditional = playerWon(computerSelection, playerSelection);
-
-        if (winnerConditional){
-            winnerStatement += `${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}!`;
-            finalStatement = winnerStatement;
+        if (tieConditional){
+            finalStatement = tieStatement;
         }
 
         else{
-            loserStatement += `${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}.`;
-            finalStatement = loserStatement;
+            let winnerConditional = playerWon(computerSelection, playerSelection);
+
+            if (winnerConditional){
+                winnerStatement += `${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}!`;
+                finalStatement = winnerStatement;
+            }
+
+            else{
+                loserStatement += `${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}.`;
+                finalStatement = loserStatement;
+            }
         }
+        console.log(finalStatement);
+        return finalStatement;
     }
-    console.log(finalStatement);
-    return finalStatement;
     
 }
 
@@ -85,17 +90,18 @@ function game(){
 b1 = document.createElement("button");
 b1.setAttribute("id", "rock");
 b1.textContent = "Rock";
-document.addEventListener("click", playPaperRockScissors)
+document.body.appendChild(b1)
+b1.addEventListener("click", playPaperRockScissors);
 
-b2 = document.createElement("button");
-b2.setAttribute("id", "paper");
-b2.textContent = "Paper";
-document.addEventListener("click", playPaperRockScissors);
+//b2 = document.createElement("button");
+//b2.setAttribute("id", "paper");
+//b2.textContent = "Paper";
+//document.addEventListener("click", playPaperRockScissors);
 
 b3 = document.createElement("button");
 b3.setAttribute("id", "scissors");
 b3.textContent = "Scissors";
-document.addEventListener("click", playPaperRockScissors);
-game();
+//document.addEventListener("click", playPaperRockScissors);
+//game();
 
-document.body.appendChild(b1);
+
