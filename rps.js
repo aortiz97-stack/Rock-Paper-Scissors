@@ -55,37 +55,28 @@ function game(){
     let winnerCount = 0;
     let loserCount = 0;
     let acceptableRounds = [3,5,7,9];
-    let rounds = parseInt(prompt("Enter the number of rounds you would like to play. Odd numbers between 1 and 10 only, non-inclusive."));
-    if (!acceptableRounds.includes(rounds)){
-        throw "Number of rounds must be an odd number between 1 and 10.";
+
+    let computerChoice = getComputerChoice();
+    let playerChoice = getPlayerChoice();
+
+    console.log(playPaperRockScissors(computerChoice, playerChoice));
+
+    if (computerChoice===playerChoice){
+        i-=1;
+    }
+   
+    else if (playerWon(computerChoice, playerChoice)){
+        winnerCount +=1;
+    }
+    else{
+        loserCount += 1;
     }
 
-
-    for (i =0; i < rounds; i++){
-        let computerChoice = getComputerChoice();
-        let playerChoice = getPlayerChoice();
-
-        console.log(playPaperRockScissors(computerChoice, playerChoice));
-
-        if (computerChoice===playerChoice){
-            i-=1;
-        }
-   
-        else if (playerWon(computerChoice, playerChoice)){
-            winnerCount +=1;
-        }
-        else{
-            loserCount += 1;
-        }
-
-        if (winnerCount >= rounds/2 + 0.5){
-            console.log(`Congratulations! You won the game!`);
-            break;
-        }
-        else if (loserCount >= rounds/2 + 0.5){
-            console.log(`Sorry, you've lost. You only won ${winnerCount} times.`);
-            break;
-        }
+    if (winnerCount ==1){
+        console.log(`Congratulations! You won the game!`);
+    }
+    else if (loserCount ==1){
+        console.log(`Sorry, you've lost.`);
     }
 }
 
