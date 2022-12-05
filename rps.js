@@ -80,4 +80,12 @@ function game(){
     }
 }
 
+//Adding additional features
+
+b1 = document.createElement("button");
+b1.setAttribute("id", "rock")
+b2 = document.createElement("button");
+b2.setAttribute("id", "paper");
+b3 = document.createElement("button");
+b3.setAttribute("id", "scissors");
 game();
