@@ -93,15 +93,17 @@ b1.textContent = "Rock";
 document.body.appendChild(b1)
 b1.addEventListener("click", playPaperRockScissors);
 
-//b2 = document.createElement("button");
-//b2.setAttribute("id", "paper");
-//b2.textContent = "Paper";
-//document.addEventListener("click", playPaperRockScissors);
+b2 = document.createElement("button");
+b2.setAttribute("id", "paper");
+b2.textContent = "Paper";
+document.body.appendChild(b2)
+b2.addEventListener("click", playPaperRockScissors);
 
 b3 = document.createElement("button");
 b3.setAttribute("id", "scissors");
 b3.textContent = "Scissors";
-//document.addEventListener("click", playPaperRockScissors);
+document.body.appendChild(b3);
+b3.addEventListener("click", playPaperRockScissors);
 //game();
 
 
