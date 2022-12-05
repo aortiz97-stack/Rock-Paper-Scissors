@@ -36,6 +36,9 @@ function playPaperRockScissors(e){
 
         let tieConditional = (computerSelection===playerSelection);
 
+        console.log(`The computer played ${computerSelection}.`);
+        console.log(`You played ${playerSelection}.`);
+
         if (tieConditional){
             finalStatement = tieStatement;
         }
