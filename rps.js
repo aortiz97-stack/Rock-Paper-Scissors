@@ -23,11 +23,15 @@ function playerWon(computerSelection, playerSelection){
     return winnerConditional;
 }
 
-function playPaperRockScissors(computerSelection, playerSelection){
+function playPaperRockScissors(){
+    let computerSelection = getComputerChoice();
+    let playerSelection = getPlayerChoice();
+    
     let winnerStatement = `You Win! `;
     let loserStatement = `You Lose! `;
     let tieStatement = `You are tied. You both chose ${computerSelection}. Please try again.`;
     let finalStatement;
+ 
 
     let tieConditional = (computerSelection===playerSelection);
 
@@ -48,7 +52,9 @@ function playPaperRockScissors(computerSelection, playerSelection){
             finalStatement = loserStatement;
         }
     }
+    console.log(finalStatement);
     return finalStatement;
+    
 }
 
 function game(){
@@ -56,16 +62,13 @@ function game(){
     let loserCount = 0;
     let acceptableRounds = [3,5,7,9];
 
-    let computerChoice = getComputerChoice();
-    let playerChoice = getPlayerChoice();
+    gameOutcome = playPaperRockScissors();
 
-    console.log(playPaperRockScissors(computerChoice, playerChoice));
-
-    if (computerChoice===playerChoice){
+    if (gameOutcome.includes("tied")){
         i-=1;
     }
    
-    else if (playerWon(computerChoice, playerChoice)){
+    else if (gameOutcome.includes("Win")){
         winnerCount +=1;
     }
     else{
