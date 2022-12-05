@@ -7,12 +7,9 @@ function getComputerChoice(){
     return choice.toLowerCase();
 }
 
-function getPlayerChoice(){
-    let choice = prompt("Please enter rock, paper, or scissors.").toLowerCase();
-    if (!(choice === 'rock' || choice==='paper'||choice==='scissors')){
-        throw "Only rock, paper, or scissors is accepted."
-    }
-    return choice
+function getPlayerChoice(e){
+
+    return e
 }
 
 function playerWon(computerSelection, playerSelection){
@@ -23,9 +20,9 @@ function playerWon(computerSelection, playerSelection){
     return winnerConditional;
 }
 
-function playPaperRockScissors(){
+function playPaperRockScissors(e){
     let computerSelection = getComputerChoice();
-    let playerSelection = getPlayerChoice();
+    let playerSelection = getPlayerChoice(e);
     
     let winnerStatement = `You Win! `;
     let loserStatement = `You Lose! `;
@@ -86,9 +83,19 @@ function game(){
 //Adding additional features
 
 b1 = document.createElement("button");
-b1.setAttribute("id", "rock")
+b1.setAttribute("id", "rock");
+b1.textContent = "Rock";
+document.addEventListener("click", playPaperRockScissors)
+
 b2 = document.createElement("button");
 b2.setAttribute("id", "paper");
+b2.textContent = "Paper";
+document.addEventListener("click", playPaperRockScissors);
+
 b3 = document.createElement("button");
 b3.setAttribute("id", "scissors");
+b3.textContent = "Scissors";
+document.addEventListener("click", playPaperRockScissors);
 game();
+
+document.body.appendChild(b1);
