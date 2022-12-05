@@ -24,25 +24,26 @@ function playerWon(computerSelection, playerSelection){
 
 function playPaperRockScissors(e){
     if (e!==undefined){
-
-    
         let computerSelection = getComputerChoice();
         let playerSelection = getPlayerChoice(e);
-        let winnerStatement = `You Win! `;
-        let loserStatement = `You Lose! `;
-        let tieStatement = `You are tied. You both chose ${computerSelection}. Please try again.`;
+        let winnerStatement = `You won this round! `;
+        let loserStatement = `You lost this round! `;
+        let tieStatement = `You are tied this round. Please try again.`;
         let finalStatement;
-    
 
         let tieConditional = (computerSelection===playerSelection);
 
-        console.log(`The computer played ${computerSelection}.`);
-        console.log(`You played ${playerSelection}.`);
+        const computerPlayed = document.createElement("div");
+        computerPlayed.textContent = `The computer played ${computerSelection}.`
+        document.body.appendChild(computerPlayed);
+
+        const playerPlayed = document.createElement("div");
+        playerPlayed.textContent = `You played ${playerSelection}.`
+        document.body.appendChild(playerPlayed);
 
         if (tieConditional){
             finalStatement = tieStatement;
         }
-
         else{
             let winnerConditional = playerWon(computerSelection, playerSelection);
 
@@ -50,13 +51,18 @@ function playPaperRockScissors(e){
                 winnerStatement += `${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}!`;
                 finalStatement = winnerStatement;
             }
-
             else{
                 loserStatement += `${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}.`;
                 finalStatement = loserStatement;
             }
         }
-        console.log(finalStatement);
+        const roundResult = document.createElement("div");
+        roundResult.textContent = finalStatement;
+        document.body.appendChild(roundResult);
+
+        const space = document.createElement("div");
+        space.textContent = "-----";
+        document.body.appendChild(space);
         return finalStatement;
     }
     
@@ -72,14 +78,12 @@ function game(){
     if (gameOutcome.includes("tied")){
         i-=1;
     }
-   
     else if (gameOutcome.includes("Win")){
         winnerCount +=1;
     }
     else{
         loserCount += 1;
     }
-
     if (winnerCount ==1){
         console.log(`Congratulations! You won the game!`);
     }
