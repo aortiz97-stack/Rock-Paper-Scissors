@@ -75,6 +75,25 @@ function playPaperRockScissors(e){
 }
 
 
+function playRound(e, winnerCount, loserCount){
+    let playerWinnerBoolean = playPaperRockScissors(e);
+        console.log(playerWinnerBoolean);
+ 
+        
+    if (playerWinnerBoolean ==="tied"){
+        console.log("tied");
+    }
+    else if (playerWinnerBoolean){
+        winnerCount += 1;
+    }
+    else{
+        loserCount += 1;
+    }
+    const scoreArr = [winnerCount, loserCount];
+
+    return scoreArr;
+       
+}
 function game(e){
     let winnerCount = 0;
     let loserCount = 0;
@@ -84,23 +103,7 @@ function game(e){
 
     if (e!==undefined){
         while(count < 5){
-            let playerWinnerBoolean = playPaperRockScissors(e);
-            console.log(playerWinnerBoolean);
- 
-            if (playerWinnerBoolean!==null){
-                if (playerWinnerBoolean ==="tied"){
-                    console.log("tied");
-                }
-                else if (playerWinnerBoolean){
-                    winnerCount += 1;
-                }
-                else{
-                    loserCount += 1;
-                }
-                playerWinnerBoolean = null;
-            }
-            console.log(`winner count: ${winnerCount}`);
-            console.log(`loser count: ${loserCount}`);
+            playRound(e, winnerCount, loserCount);
 
             let scores = document.createElement("div");
             scores.textContent = `Score:\nPlayer: ${winnerCount}\nComputer: ${loserCount}`;
@@ -120,12 +123,18 @@ function game(e){
                 break
             }
 
+            const buttons = document.querySelectorAll("button");
+            buttons.forEach((button) => {
+                button.removeEventListener("click", game);
+            });
+            buttons.forEach((button) => {
+                button.addEventListener("click", game);
+            });
+
+
             count++;
 
 
-            let resultNodes = document.querySelectorAll(".result");
-            let latestResult = resultNodes[resultNodes.length-1];
-            
 
             
 
