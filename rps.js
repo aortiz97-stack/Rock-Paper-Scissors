@@ -78,13 +78,12 @@ function playPaperRockScissors(e){
 function game(e){
     let winnerCount = 0;
     let loserCount = 0;
-
+    let count = 0;
     
     
 
     if (e!==undefined){
-
-        //for (let i=0; i< 5; i++){
+        while(count < 5){
             let playerWinnerBoolean = playPaperRockScissors(e);
             console.log(playerWinnerBoolean);
  
@@ -112,6 +111,18 @@ function game(e){
             document.body.appendChild(divider);
 
 
+            if (winnerCount===3){
+                console.log("Won!!!!")
+                break
+            }
+            else if (loserCount===3){
+                console.log("Lose!!!")
+                break
+            }
+
+            count++;
+
+
             let resultNodes = document.querySelectorAll(".result");
             let latestResult = resultNodes[resultNodes.length-1];
             
@@ -132,7 +143,7 @@ function game(e){
                 document.body.appendChild(finalResult);
             }*/
 
-        //}
+        }
         
 
         
