@@ -15,11 +15,16 @@ function getPlayerChoice(e){
 }
 
 function playerWon(computerSelection, playerSelection){
-    let winnerConditional = (playerSelection==="rock" && computerSelection==="scissors") ? true :
-    (playerSelection==="paper" && computerSelection==="rock")? true :
-    (playerSelection==="scissors" && computerSelection==="paper")? true: false;
+    if (computerSelection === playerSelection){
+        return "tied";
+    }
+    else{
+        let winnerConditional = (playerSelection==="rock" && computerSelection==="scissors") ? true :
+        (playerSelection==="paper" && computerSelection==="rock")? true :
+        (playerSelection==="scissors" && computerSelection==="paper")? true: false;
 
-    return winnerConditional;
+        return winnerConditional;
+    }
 }
 
 function playPaperRockScissors(e){
@@ -31,8 +36,6 @@ function playPaperRockScissors(e){
         let tieStatement = `You are tied this round. Please try again.`;
         let finalStatement;
 
-        let tieConditional = (computerSelection===playerSelection);
-
         const computerPlayed = document.createElement("div");
         computerPlayed.textContent = `The computer played ${computerSelection}.`
         document.body.appendChild(computerPlayed);
@@ -41,12 +44,12 @@ function playPaperRockScissors(e){
         playerPlayed.textContent = `You played ${playerSelection}.`
         document.body.appendChild(playerPlayed);
 
-        if (tieConditional){
+        let winnerConditional = playerWon(computerSelection, playerSelection);
+
+        if (winnerConditional === "tied"){
             finalStatement = tieStatement;
         }
         else{
-            let winnerConditional = playerWon(computerSelection, playerSelection);
-
             if (winnerConditional){
                 winnerStatement += `${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}!`;
                 finalStatement = winnerStatement;
@@ -57,60 +60,131 @@ function playPaperRockScissors(e){
             }
         }
         const roundResult = document.createElement("div");
+        roundResult.classList.add("result");
         roundResult.textContent = finalStatement;
         document.body.appendChild(roundResult);
-
-        const space = document.createElement("div");
-        space.textContent = "-----";
-        document.body.appendChild(space);
-        return finalStatement;
     }
     
 }
 
-function game(){
+
+function game(e){
     let winnerCount = 0;
     let loserCount = 0;
-    let acceptableRounds = [3,5,7,9];
 
-    gameOutcome = playPaperRockScissors();
+    if (e!==undefined){
+        for (let i=0; i< 5; i++){
+            playPaperRockScissors(e);
+            const buttons = document.querySelectorAll("button");
+            buttons.forEach((button) => {
+                button.removeEventListener("click", game);
+            });
+            let resultNodes = document.querySelectorAll(".result");
+            let latestResult = resultNodes[resultNodes.length-1];
 
-    if (gameOutcome.includes("tied")){
-        i-=1;
+            if (latestResult.textContent.includes("tied")){
+                i-=1;
+            }
+            else if (latestResult.textContent.includes("won")){
+                winnerCount += 1;
+            }
+            else{
+                loserCount += 1;
+            }
+
+            const finalResult = document.createElement("div");
+            if (winnerCount ===3){
+                finalResult.textContent =`Congratulations! You won the game!`;
+                document.body.appendChild(finalResult);
+            }
+            else if (loserCount ===3){
+                finalResult.textContent = `Sorry, you've lost.`;
+                document.body.appendChild(finalResult);
+            }
+
+        }
+        
+
+        
     }
-    else if (gameOutcome.includes("Win")){
-        winnerCount +=1;
-    }
-    else{
-        loserCount += 1;
-    }
-    if (winnerCount ==1){
-        console.log(`Congratulations! You won the game!`);
-    }
-    else if (loserCount ==1){
-        console.log(`Sorry, you've lost.`);
-    }
+
+    /*for (let i=0; i < 5; i++){
+        if (e!==undefined){
+            playPaperRockScissors(e);
+            let resultNodes = document.querySelectorAll(".result");
+            let latestResult = resultNodes[resultNodes.length-1];
+            console.log("passed!");
+        }
+    }*/
+    
+
+
+    /*
+    if (latestResult!==undefined){
+        for (let i = 0; i < 5; i++){
+            let resultNodes = document.querySelectorAll(".result");
+            let latestResult = resultNodes[resultNodes.length-1];
+
+            if (latestResult.textContent.includes("tied")){
+                i-=1;
+            }
+            else if (latestResult.textContent.includes("won")){
+                winnerCount += 1;
+            }
+            else{
+                loserCount += 1;
+            }
+
+
+            const score = document.createElement("div");
+            score.textContent = `Score:\nComputer: ${loserCount}\nYou: ${winnerCount}\n-----`;
+            document.body.appendChild(score);
+
+            let buttons = document.querySelectorAll("button");
+            buttons.forEach((button) => {
+                button.addEventListener("click", playPaperRockScissors)
+            });
+
+            const finalResult = document.createElement("div");
+            if (winnerCount ===3){
+                finalResult.textContent =`Congratulations! You won the game!`;
+                document.body.appendChild(finalResult);
+            }
+            else if (loserCount ===3){
+                finalResult.textContent = `Sorry, you've lost.`;
+                document.body.appendChild(finalResult);
+            }
+        }
+    }*/
+}
+//Adding additional features
+function addButtons(){
+    let b1 = document.createElement("button");
+    b1.setAttribute("id", "rock");
+    b1.textContent = "Rock";
+    document.body.appendChild(b1)
+    //b1.addEventListener("click", playPaperRockScissors);
+
+    let b2 = document.createElement("button");
+    b2.setAttribute("id", "paper");
+    b2.textContent = "Paper";
+    document.body.appendChild(b2)
+    //b2.addEventListener("click", playPaperRockScissors);
+
+    let b3 = document.createElement("button");
+    b3.setAttribute("id", "scissors");
+    b3.textContent = "Scissors";
+    document.body.appendChild(b3);
+    //b3.addEventListener("click", playPaperRockScissors);
+
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => {
+        button.addEventListener("click", game);
+    });
+
 }
 
-//Adding additional features
+addButtons();
 
-b1 = document.createElement("button");
-b1.setAttribute("id", "rock");
-b1.textContent = "Rock";
-document.body.appendChild(b1)
-b1.addEventListener("click", playPaperRockScissors);
-
-b2 = document.createElement("button");
-b2.setAttribute("id", "paper");
-b2.textContent = "Paper";
-document.body.appendChild(b2)
-b2.addEventListener("click", playPaperRockScissors);
-
-b3 = document.createElement("button");
-b3.setAttribute("id", "scissors");
-b3.textContent = "Scissors";
-document.body.appendChild(b3);
-b3.addEventListener("click", playPaperRockScissors);
-//game();
 
 
