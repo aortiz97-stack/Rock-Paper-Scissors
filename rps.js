@@ -73,7 +73,7 @@ function game(e){
     let loserCount = 0;
 
     if (e!==undefined){
-        for (let i=0; i< 5; i++){
+        //for (let i=0; i< 5; i++){
             playPaperRockScissors(e);
             const buttons = document.querySelectorAll("button");
             buttons.forEach((button) => {
@@ -94,15 +94,15 @@ function game(e){
 
             const finalResult = document.createElement("div");
             if (winnerCount ===3){
-                finalResult.textContent =`Congratulations! You won the game!`;
+                finalResult.textContent =`----- \n Congratulations! You won the game!`;
                 document.body.appendChild(finalResult);
             }
             else if (loserCount ===3){
-                finalResult.textContent = `Sorry, you've lost.`;
+                finalResult.textContent = `----- \n Sorry, you've lost.`;
                 document.body.appendChild(finalResult);
             }
 
-        }
+        //}
         
 
         
