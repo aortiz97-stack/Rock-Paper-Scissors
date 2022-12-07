@@ -90,6 +90,22 @@ function playRound(e, winnerCount, loserCount){
     }
     const scoreArr = [winnerCount, loserCount];
 
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => {
+        button.removeEventListener("click", game);
+    });
+
+    //winnerCount = scoreArr[0];
+    //loserCount = scoreArr[1];
+
+    let scores = document.createElement("div");
+    scores.textContent = `Score:\nPlayer: ${winnerCount}\nComputer: ${loserCount}`;
+    document.body.appendChild(scores);
+
+    let divider = document.createElement("div");
+    divider.textContent ="-----";
+    document.body.appendChild(divider);
+
     return scoreArr;
        
 }
@@ -101,44 +117,12 @@ function game(e){
     
 
     if (e!==undefined){
-        while(count < 5){
+        while(winnerCount < 3 && loserCount < 3){
             const scoreArr = playRound(e, winnerCount, loserCount);
             winnerCount = scoreArr[0];
             loserCount = scoreArr[1];
 
-            let scores = document.createElement("div");
-            scores.textContent = `Score:\nPlayer: ${scoreArr[0]}\nComputer: ${scoreArr[1]}`;
-            document.body.appendChild(scores);
-
-            let divider = document.createElement("div");
-            divider.textContent ="-----";
-            document.body.appendChild(divider);
-
-
-            if (scoreArr[0]===3){
-                console.log("Won!!!!")
-                break;
-                
-            }
-            else if (scoreArr[1]===3){
-                console.log("Lose!!!")
-                break;
-                
-            }
-
-            /*const buttons = document.querySelectorAll("button");
-            buttons.forEach((button) => {
-                button.removeEventListener("click", game);
-            });
-            buttons.forEach((button) => {
-                button.addEventListener("click", game);
-            });*/
-
-
             count++;
-
-
-
             
 
             //buttons.forEach((button) => {
@@ -156,6 +140,15 @@ function game(e){
             }*/
 
         }
+        if (winnerCount===3){
+            console.log("Won!!!!");
+            
+        }
+        else if (loserCount===3){
+            console.log("Lose!!!");
+            
+        }
+        
         
 
         
