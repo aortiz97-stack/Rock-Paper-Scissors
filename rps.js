@@ -68,21 +68,17 @@ function playPaperRockScissors(e){
         roundResult.textContent = finalStatement;
         document.body.appendChild(roundResult);
 
-        if (winnerConditional === "tied"){
-            return "tied";
-        }
-        else{
-            return winnerConditional;
-        }
+        //if (winnerConditional === "tied"){
+            //return "tied";
+        //}
+        //else{
+            //return winnerConditional;
+        //}
+        return true;
     }
     
 }
 
-
-function playRound(e){
-    playPaperRockScissors(e);
-       
-}
 
 function updateScores(winnerCount, loserCount){
     const resultNodeList = document.querySelectorAll(".result");
@@ -117,15 +113,18 @@ function updateScores(winnerCount, loserCount){
 function game(){
     let winnerCount = 0;
     let loserCount = 0;
-    
-    const buttons = document.querySelectorAll("button");
-             buttons.forEach((button) => {
-                 button.addEventListener("click", playPaperRockScissors);
-            });
+    let eventStarted;
 
-    //if (e!==undefined){
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => {
+        button.addEventListener("click", event => {eventStarted = playPaperRockScissors(event)});
+    });
+    console.log("passed");
+
+    if (eventStarted){
         while(winnerCount < 3 && loserCount < 3){
-            
+            console.log("passed2");
+
             const scoreArr = updateScores(winnerCount, loserCount);
             if (scoreArr !== undefined){
                 winnerCount = scoreArr[0];
@@ -134,6 +133,7 @@ function game(){
             buttons.forEach((button) => {
                 button.removeEventListener("click", playPaperRockScissors);
             });
+            //break;
 
 
         }
@@ -148,7 +148,7 @@ function game(){
         
 
         
-    //}
+    }
 
     /*for (let i=0; i < 5; i++){
         if (e!==undefined){
@@ -218,6 +218,11 @@ function addButtons(){
     b3.textContent = "Scissors";
     document.body.appendChild(b3);
     //b3.addEventListener("click", playPaperRockScissors);
+
+    const buttons = document.querySelectorAll("button");
+            buttons.forEach((button) => {
+                button.addEventListener("click", playPaperRockScissors);
+            });
 
 }
 
