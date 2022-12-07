@@ -101,7 +101,7 @@ function game(e){
     
 
     if (e!==undefined){
-        //while(count < 5){
+        while(count < 5){
             const scoreArr = playRound(e, winnerCount, loserCount);
             winnerCount = scoreArr[0];
             loserCount = scoreArr[1];
@@ -117,20 +117,22 @@ function game(e){
 
             if (scoreArr[0]===3){
                 console.log("Won!!!!")
+                break;
                 
             }
             else if (scoreArr[1]===3){
                 console.log("Lose!!!")
+                break;
                 
             }
 
-            const buttons = document.querySelectorAll("button");
+            /*const buttons = document.querySelectorAll("button");
             buttons.forEach((button) => {
                 button.removeEventListener("click", game);
             });
             buttons.forEach((button) => {
                 button.addEventListener("click", game);
-            });
+            });*/
 
 
             count++;
@@ -153,7 +155,7 @@ function game(e){
                 document.body.appendChild(finalResult);
             }*/
 
-        //}
+        }
         
 
         
