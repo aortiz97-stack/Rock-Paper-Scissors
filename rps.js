@@ -77,7 +77,6 @@ function playPaperRockScissors(e){
 
 function playRound(e, winnerCount, loserCount){
     let playerWinnerBoolean = playPaperRockScissors(e);
-        console.log(playerWinnerBoolean);
  
         
     if (playerWinnerBoolean ==="tied"){
@@ -102,11 +101,13 @@ function game(e){
     
 
     if (e!==undefined){
-        while(count < 5){
-            playRound(e, winnerCount, loserCount);
+        //while(count < 5){
+            const scoreArr = playRound(e, winnerCount, loserCount);
+            winnerCount = scoreArr[0];
+            loserCount = scoreArr[1];
 
             let scores = document.createElement("div");
-            scores.textContent = `Score:\nPlayer: ${winnerCount}\nComputer: ${loserCount}`;
+            scores.textContent = `Score:\nPlayer: ${scoreArr[0]}\nComputer: ${scoreArr[1]}`;
             document.body.appendChild(scores);
 
             let divider = document.createElement("div");
@@ -114,13 +115,13 @@ function game(e){
             document.body.appendChild(divider);
 
 
-            if (winnerCount===3){
+            if (scoreArr[0]===3){
                 console.log("Won!!!!")
-                break
+                
             }
-            else if (loserCount===3){
+            else if (scoreArr[1]===3){
                 console.log("Lose!!!")
-                break
+                
             }
 
             const buttons = document.querySelectorAll("button");
@@ -152,7 +153,7 @@ function game(e){
                 document.body.appendChild(finalResult);
             }*/
 
-        }
+        //}
         
 
         
