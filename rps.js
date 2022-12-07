@@ -118,14 +118,14 @@ function game(){
     let winnerCount = 0;
     let loserCount = 0;
     
-    
-
-    //if (e!==undefined){
-        while(winnerCount < 3 && loserCount < 3){
-            const buttons = document.querySelectorAll("button");
+    const buttons = document.querySelectorAll("button");
              buttons.forEach((button) => {
                  button.addEventListener("click", playPaperRockScissors);
             });
+
+    //if (e!==undefined){
+        while(winnerCount < 3 && loserCount < 3){
+            
             const scoreArr = updateScores(winnerCount, loserCount);
             if (scoreArr !== undefined){
                 winnerCount = scoreArr[0];
