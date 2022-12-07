@@ -124,7 +124,7 @@ function game(){
             winnerCount = scoreArr[0];
             loserCount = scoreArr[1];
             buttons.forEach((button) => {
-                button.addEventListener("click", playRound);
+                button.removeEventListener("click", playRound);
             });
 
 
