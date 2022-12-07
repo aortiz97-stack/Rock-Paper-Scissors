@@ -8,6 +8,10 @@ function getComputerChoice(){
 }
 
 function getPlayerChoice(e){
+    const buttons = document.querySelectorAll("button");
+        buttons.forEach((button) => {
+            button.removeEventListener("click", game);
+        });
     if (e === undefined) return;
     else{
         return(e.target.id);
@@ -90,11 +94,6 @@ function playRound(e, winnerCount, loserCount){
     }
     const scoreArr = [winnerCount, loserCount];
 
-    const buttons = document.querySelectorAll("button");
-    buttons.forEach((button) => {
-        button.removeEventListener("click", game);
-    });
-
     //winnerCount = scoreArr[0];
     //loserCount = scoreArr[1];
 
@@ -109,50 +108,39 @@ function playRound(e, winnerCount, loserCount){
     return scoreArr;
        
 }
-function game(e){
+function game(){
     let winnerCount = 0;
     let loserCount = 0;
-    let count = 0;
     
     
 
-    if (e!==undefined){
+    //if (e!==undefined){
         while(winnerCount < 3 && loserCount < 3){
+            const buttons = document.querySelectorAll("button");
+             buttons.forEach((button) => {
+                 button.addEventListener("click", playRound);
+            });
             const scoreArr = playRound(e, winnerCount, loserCount);
             winnerCount = scoreArr[0];
             loserCount = scoreArr[1];
+            buttons.forEach((button) => {
+                button.addEventListener("click", playRound);
+            });
 
-            count++;
-            
-
-            //buttons.forEach((button) => {
-                //button.removeEventListener("click", game);
-            //});
-
-            /*const finalResult = document.createElement("div");
-            if (winnerCount ===3){
-                finalResult.textContent =`----- \n Congratulations! You won the game!`;
-                document.body.appendChild(finalResult);
-            }
-            else if (loserCount ===3){
-                finalResult.textContent = `----- \n Sorry, you've lost.`;
-                document.body.appendChild(finalResult);
-            }*/
 
         }
-        if (winnerCount===3){
+        /*if (winnerCount===3){
             console.log("Won!!!!");
             
         }
         else if (loserCount===3){
             console.log("Lose!!!");
             
-        }
-        
+        }*/
         
 
         
-    }
+    //}
 
     /*for (let i=0; i < 5; i++){
         if (e!==undefined){
@@ -223,14 +211,10 @@ function addButtons(){
     document.body.appendChild(b3);
     //b3.addEventListener("click", playPaperRockScissors);
 
-    const buttons = document.querySelectorAll("button");
-    buttons.forEach((button) => {
-        button.addEventListener("click", game);
-    });
-
 }
 
 addButtons();
+game();
 
 
 
