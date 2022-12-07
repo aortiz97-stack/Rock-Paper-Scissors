@@ -79,35 +79,41 @@ function playPaperRockScissors(e){
 }
 
 
-function playRound(e, winnerCount, loserCount){
-    let playerWinnerBoolean = playPaperRockScissors(e);
- 
-        
-    if (playerWinnerBoolean ==="tied"){
-        console.log("tied");
-    }
-    else if (playerWinnerBoolean){
-        winnerCount += 1;
-    }
-    else{
-        loserCount += 1;
-    }
-    const scoreArr = [winnerCount, loserCount];
-
-    //winnerCount = scoreArr[0];
-    //loserCount = scoreArr[1];
-
-    let scores = document.createElement("div");
-    scores.textContent = `Score:\nPlayer: ${winnerCount}\nComputer: ${loserCount}`;
-    document.body.appendChild(scores);
-
-    let divider = document.createElement("div");
-    divider.textContent ="-----";
-    document.body.appendChild(divider);
-
-    return scoreArr;
+function playRound(e){
+    playPaperRockScissors(e);
        
 }
+
+function updateScores(winnerCount, loserCount){
+    const resultNodeList = document.querySelectorAll(".result");
+    let lastChild = resultNodeList[resultNodeList.length-1];
+    if (resultNodeList.length !== 0){
+        if (lastChild.textContent.contains("tied")){
+            console.log("tied");
+        }
+        else if (lastChild.textContent.contains("won")){
+            winnerCount += 1;
+        }
+        else{
+            loserCount += 1;
+        }
+        const scoreArr = [winnerCount, loserCount];
+    
+        //winnerCount = scoreArr[0];
+        //loserCount = scoreArr[1];
+    
+        let scores = document.createElement("div");
+        scores.textContent = `Score:\nPlayer: ${winnerCount}\nComputer: ${loserCount}`;
+        document.body.appendChild(scores);
+    
+        let divider = document.createElement("div");
+        divider.textContent ="-----";
+        document.body.appendChild(divider);
+    
+        return scoreArr;
+    }
+}
+
 function game(){
     let winnerCount = 0;
     let loserCount = 0;
@@ -118,25 +124,27 @@ function game(){
         while(winnerCount < 3 && loserCount < 3){
             const buttons = document.querySelectorAll("button");
              buttons.forEach((button) => {
-                 button.addEventListener("click", playRound);
+                 button.addEventListener("click", playPaperRockScissors);
             });
-            const scoreArr = playRound(e, winnerCount, loserCount);
-            winnerCount = scoreArr[0];
-            loserCount = scoreArr[1];
+            const scoreArr = updateScores(winnerCount, loserCount);
+            if (scoreArr !== undefined){
+                winnerCount = scoreArr[0];
+                loserCount = scoreArr[1];
+            }
             buttons.forEach((button) => {
-                button.removeEventListener("click", playRound);
+                button.removeEventListener("click", playPaperRockScissors);
             });
 
 
         }
-        /*if (winnerCount===3){
+        if (winnerCount===3){
             console.log("Won!!!!");
             
         }
         else if (loserCount===3){
             console.log("Lose!!!");
             
-        }*/
+        }
         
 
         
