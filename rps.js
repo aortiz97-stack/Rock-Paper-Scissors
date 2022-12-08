@@ -64,18 +64,6 @@ function playPaperRockScissors(e){
         roundResult.textContent = finalStatement;
         document.body.appendChild(roundResult);
 
-        //if (winnerConditional === "tied"){
-            //return "tied";
-        //}
-        //else{
-            //return winnerConditional;
-        //}
-        /*const buttons = document.querySelectorAll("button");
-        buttons.forEach((button) => {
-            button.removeEventListener("click", playPaperRockScissors);
-        });*/
-        //callback(true);
-        //return true;
         updateScores();
     }
     
@@ -85,9 +73,7 @@ function playPaperRockScissors(e){
 function updateScores(){
     const resultNodeList = document.querySelectorAll(".result");
     let lastChild = resultNodeList[resultNodeList.length-1];
-    console.log(`lastChild: ${typeof lastChild.textContent}`);
-    console.log(resultNodeList);
-    //let scoreArr;
+    
     if (resultNodeList.length !== 0){
         if (lastChild.textContent.includes("tied")){
             console.log("tied");
@@ -98,10 +84,6 @@ function updateScores(){
         else{
             loserCount+=1;
         }
-        
-    
-        //winnerCount = scoreArr[0];
-        //loserCount = scoreArr[1];
     
         let scores = document.createElement("div");
         scores.textContent = `Score:\nPlayer: ${winnerCount}\nComputer: ${loserCount}`;
@@ -110,8 +92,6 @@ function updateScores(){
         let divider = document.createElement("div");
         divider.textContent ="-----";
         document.body.appendChild(divider);
-    
-        //return scoreArr;
 
         const buttons = document.querySelectorAll("button");
 
@@ -129,111 +109,16 @@ function updateScores(){
 
             buttons.forEach((button) => {
                 button.removeEventListener("click", playPaperRockScissors)})
-            
         }
     }
 }
 
 function game(){
-    let eventStarted=null;
-
     const buttons = document.querySelectorAll("button");
     
     buttons.forEach((button) => {
         button.addEventListener("click", playPaperRockScissors)
-
-        //button.addEventListener("mouseup", button.addEventListener("click", playPaperRockScissors))
-    
     });
-    
-    console.log("passed");
-    console.log(eventStarted);
-
-    //if (eventStarted){ 
-    console.log(`winnerCount: ${winnerCount} loserCount: ${loserCount}`);
-        //while(winnerCount < 3 && loserCount < 3){
-    console.log("passed2");
-
-    //let scoreArr = updateScores(winnerCount, loserCount);
-    //console.log(`scoreArr: ${scoreArr}`);
-
-
-
-            //break;
-
-
-
-
-
-
-            //buttons.forEach((button) => {
-                //button.addEventListener("click", event => {eventStarted = playPaperRockScissors(event)});
-            //});
-            //break;
-
-
-        //}
-        if (winnerCount===3){
-            console.log("Won!!!!");
-            
-        }
-        else if (loserCount===3){
-            console.log("Lose!!!");
-            
-        }
-        
-
-        //}
-    //}
-
-    /*for (let i=0; i < 5; i++){
-        if (e!==undefined){
-            playPaperRockScissors(e);
-            let resultNodes = document.querySelectorAll(".result");
-            let latestResult = resultNodes[resultNodes.length-1];
-            console.log("passed!");
-        }
-    }*/
-    
-
-
-    /*
-    if (latestResult!==undefined){
-        for (let i = 0; i < 5; i++){
-            let resultNodes = document.querySelectorAll(".result");
-            let latestResult = resultNodes[resultNodes.length-1];
-
-            if (latestResult.textContent.includes("tied")){
-                i-=1;
-            }
-            else if (latestResult.textContent.includes("won")){
-                winnerCount += 1;
-            }
-            else{
-                loserCount += 1;
-            }
-
-
-            const score = document.createElement("div");
-            score.textContent = `Score:\nComputer: ${loserCount}\nYou: ${winnerCount}\n-----`;
-            document.body.appendChild(score);
-
-            let buttons = document.querySelectorAll("button");
-            buttons.forEach((button) => {
-                button.addEventListener("click", playPaperRockScissors)
-            });
-
-            const finalResult = document.createElement("div");
-            if (winnerCount ===3){
-                finalResult.textContent =`Congratulations! You won the game!`;
-                document.body.appendChild(finalResult);
-            }
-            else if (loserCount ===3){
-                finalResult.textContent = `Sorry, you've lost.`;
-                document.body.appendChild(finalResult);
-            }
-        }
-    }*/
 };
 
 //Adding additional features
@@ -242,20 +127,18 @@ function addButtons(){
     b1.setAttribute("id", "rock");
     b1.textContent = "Rock";
     document.body.appendChild(b1)
-    //b1.addEventListener("click", playPaperRockScissors);
-
+    
     let b2 = document.createElement("button");
     b2.setAttribute("id", "paper");
     b2.textContent = "Paper";
     document.body.appendChild(b2)
-    //b2.addEventListener("click", playPaperRockScissors);
 
     let b3 = document.createElement("button");
     b3.setAttribute("id", "scissors");
     b3.textContent = "Scissors";
     document.body.appendChild(b3);
-
 }
+
 
 addButtons();
 game();
