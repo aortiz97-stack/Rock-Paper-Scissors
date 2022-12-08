@@ -112,6 +112,25 @@ function updateScores(){
         document.body.appendChild(divider);
     
         //return scoreArr;
+
+        const buttons = document.querySelectorAll("button");
+
+        if (winnerCount===3){
+            let finalResult = document.createElement("div");
+            finalResult.textContent = `Congratulations! You won the game!`;
+            document.body.appendChild(finalResult);
+            buttons.forEach((button) => {
+                button.removeEventListener("click", playPaperRockScissors)})
+        }
+        else if (loserCount===3){
+            let finalResult = document.createElement("div");
+            finalResult.textContent = `Sorry, you lost the game. You only won ${winnerCount} out of 5.`;
+            document.body.appendChild(finalResult);
+
+            buttons.forEach((button) => {
+                button.removeEventListener("click", playPaperRockScissors)})
+            
+        }
     }
 }
 
