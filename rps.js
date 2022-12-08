@@ -85,14 +85,14 @@ function playPaperRockScissors(e){
 function updateScores(){
     const resultNodeList = document.querySelectorAll(".result");
     let lastChild = resultNodeList[resultNodeList.length-1];
-    //console.log("ENTERRRRRED");
+    console.log(`lastChild: ${typeof lastChild.textContent}`);
     console.log(resultNodeList);
     //let scoreArr;
     if (resultNodeList.length !== 0){
-        if (lastChild.textContent.contains("tied")){
+        if (lastChild.textContent.includes("tied")){
             console.log("tied");
         }
-        else if (lastChild.textContent.contains("won")){
+        else if (lastChild.textContent.includes("won")){
             winnerCount+=1;
         }
         else{
